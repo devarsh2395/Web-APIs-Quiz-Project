@@ -1,4 +1,4 @@
-
+// variables delcared in the global scope
  let currentQuestionIndex = 0;
  let time = 0;
  let timerId;
@@ -11,7 +11,7 @@
        b: "let",
        c: "const"
      },
-     correctAnswer: "b"
+     correctAnswer: "var"
    },
    {
      question: "Which of the following is not a JavaScript data type?",
@@ -21,7 +21,7 @@
        c: "object",
        d: "boolean"
      },
-     correctAnswer: "c"
+     correctAnswer: "object"
    },
    {
      question: "What is the keyword used to create a function in JavaScript?",
@@ -30,7 +30,7 @@
        b: "var",
        c: "let"
      },
-     correctAnswer: "a"
+     correctAnswer: "function"
    },
    {
      question: "What is the keyword used to create a loop in JavaScript?",
@@ -39,7 +39,7 @@
        b: "for",
        c: "while"
      },
-     correctAnswer: "b"
+     correctAnswer: "for"
    },
    {
      question: "What is the keyword used to end a loop in JavaScript?",
@@ -48,7 +48,7 @@
        b: "continue",
        c: "end"
      },
-     correctAnswer: "a"
+     correctAnswer: "break"
    }
  ];
 
@@ -58,23 +58,30 @@
 
  startButton.addEventListener("click", startQuiz);
 
+
+//  start Quiz Function
+
  function startQuiz() {
      time = 30;
      currentQuestionIndex = 0;
-     correctAnswers = 0;
      startButton.style.display = "none";
      showtimerId = setInterval(updateTimer, 1000);
      showQuestion();
  }
 
+//  Timer function
+
  function updateTimer() {
      time--;
      document.getElementById("timer").innerHTML = time;
      if (time <= 0) {
-         clearInterval(timerId);
+         clearInterval(showtimerId);
          showResults();
      }
  }
+
+
+// Question function
 
  function showQuestion() {
      quizContainer.innerHTML = "";
@@ -92,6 +99,8 @@
      }
  }
 
+//  Answer Function
+
  function selectAnswer(event) {
      const selectedButton = event.target;
      const correct = selectedButton.textContent.startsWith(questions[currentQuestionIndex].correctAnswer);
@@ -107,12 +116,49 @@
      }
  }
 
+//  Results function
+
  function showResults() {
     quizContainer.innerHTML = "";
+    document.querySelector("#timer").setAttribute("style", "display:none");
     resultsContainer.innerHTML = "";
     resultsContainer.style.display = "block";
     const score = document.createElement("p");
     score.textContent = `You scored ${correctAnswers} out of ${questions.length}`;
-    resultsContainer.appendChild(score);
+    
+    const initials = document.createElement("p");
+
+    initials.textContent = 'Enter Initials: ';
+
+    const input = document.createElement('input');
+
+    input.setAttribute("type", "text");
+
+    input.setAttribute("id", "initials");
+
+    const submit = document.createElement("button");
+
+    submit.setAttribute("id","submit");
+    
+    submit.textContent = "submit";
+
+    resultsContainer.append(score, initials, input, submit);
+    document.querySelector("#submit").addEventListener("click", highScores);
 }
+
+function highScores() {
+  let initials = document.querySelector("#intials").value.trim();
+  if (initials !== ""){
+    let highScores = JSON.parse(window.localStorage.getItem("highScores")) || [];
+    let newScore = {
+      score: correctAnswers,
+      initials: initials,
+    }
+    highScores.push(newScore);
+    window.localStorage.setItem("highScores",JSON.stringify(highScores));
+    window.location.href = "highscores.html";
+  }
+}
+
+
 

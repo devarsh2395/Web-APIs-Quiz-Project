@@ -7,11 +7,11 @@ Quiz Project
 This Challenge is  to build a timed coding quiz with multiple-choice questions. This app will run in the browser, and will feature dynamically updated HTML and CSS powered by JavaScript code. It will have a clean, polished, and responsive user interface. At the end of the Quiz one can save the it with their initials and view the highscores saved in the local storage.
 
 
-[Home webpage img]()
+[Home webpage img](./assets/Images/home-webpage-img.png)
 
 ## Deployed Webpage Url
 
-[Deployd webpage Url]()
+[Deployd webpage Url](https://devarsh2395.github.io/Web-APIs-Quiz-Project/)
 
 
 

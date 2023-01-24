@@ -1,3 +1,4 @@
+
 function printScore (){
  let highScores = JSON.parse(window.localStorage.getItem("highScores")) || [];
  highScores.sort(function(a,b){

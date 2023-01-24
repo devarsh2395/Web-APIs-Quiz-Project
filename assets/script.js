@@ -146,6 +146,9 @@
     document.querySelector("#submit").addEventListener("click", highScores);
 }
 
+
+// Highscores function
+
 function highScores() {
   let initials = document.querySelector("#intials").value.trim();
   if (initials !== ""){

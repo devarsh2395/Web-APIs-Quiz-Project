@@ -1,4 +1,4 @@
-# JavaScript Password Generator Project
+# JavaScript and Web APIs Quiz Project
 Quiz Project
 
 
